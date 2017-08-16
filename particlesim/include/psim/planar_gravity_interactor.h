@@ -8,7 +8,7 @@ namespace psim {
         class PlanarGravityInteractor : public AbstractGravityInteractor
         {
         public:
-            PlanarGravityInteractor(vec::vec3Coord position, vec::vec3Coord normal, float massKG, float gConst = G, bool deactivateOnContact = true);
+            PlanarGravityInteractor(vec::vec3f position, vec::vec3f normal, float massKG, float gConst = G, bool deactivateOnContact = true);
             virtual ~PlanarGravityInteractor() = default;
             PlanarGravityInteractor(const PlanarGravityInteractor& o);
             PlanarGravityInteractor& operator=(const PlanarGravityInteractor& o);
@@ -17,8 +17,8 @@ namespace psim {
             virtual BaseInteractor* clone() const override;
 
         protected:
-            vec::vec3Coord pos;
-            vec::vec3Coord n;
+            vec::vec3f pos;
+            vec::vec3f n;
             float mass;
             float d; //used in distance calculation
             bool deactivate;

@@ -19,11 +19,8 @@ namespace psim {
     };
 
     namespace base {
-        using coord = float;
         using colorRGB = float[3];
         using time = float;
-        using accel = float;
-        using force = float;
     }
 
     namespace vec {
@@ -44,9 +41,6 @@ namespace psim {
 
         };
 
-        using vec3Coord = vec3<base::coord>;
-        using vec3Accel = vec3<base::accel>;
-        using vec3Force = vec3<base::force>;
         using vec3f = vec3<float>;
 
         template<typename T>

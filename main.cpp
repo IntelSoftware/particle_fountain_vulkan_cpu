@@ -1,5 +1,7 @@
 #include <cstdio>
 #include <iostream>
+#include <cstring>
+#include <cstdlib>
 
 #include <renderer/appinstance.h>
 #include <renderer/surfacewindows.h>
@@ -26,9 +28,15 @@
 
 constexpr int SCR_WIDTH = 1280;
 constexpr int SCR_HEIGHT = 960;
-constexpr std::size_t MAX_PARTICLES = 200000;
 constexpr float WORLD_SIZE = 500;
-constexpr int THREADS = 8;
+
+namespace {
+    std::size_t MAX_PARTICLES = 10000;
+    int THREADS = 1;
+    float RATE_NUM = 200.f;
+    float RATE_DEN = 0.1f;
+    uint32_t TTL = 600;
+};
 
 psim::Model::GeneratorList initGeneratorsList() 
 {
@@ -37,10 +45,10 @@ psim::Model::GeneratorList initGeneratorsList()
         { 0.0f, 250.0f, 0.0f },
         psim::generators::PointGenerator::defTheta(90, 5),
         psim::generators::PointGenerator::defPhi(-90, 5),
-        psim::generators::PointGenerator::defTTL(600, 0),
+        psim::generators::PointGenerator::defTTL(TTL, 0),
         psim::generators::PointGenerator::defMass(5.0e+10f, 0),
         psim::generators::PointGenerator::defSpeed(95, 10),
-        psim::generators::PointGenerator::defSpawningRate(20.0f, 0.1f)
+        psim::generators::PointGenerator::defSpawningRate(RATE_NUM, RATE_DEN)
     );
     genList.push_back(g);
     g = nullptr;
@@ -100,9 +108,40 @@ glm::mat4 initMVP()
     return proj * view * model;
 }
 
-
-int main()
+bool getSettings(int argc, char* argv[])
 {
+    for(int i = 1; i< argc; ++i) {
+        if(strcmp("-np", argv[i]) == 0) {
+            MAX_PARTICLES = atoi(argv[++i]);
+        } else if(strcmp("-nt", argv[i]) == 0) {
+            THREADS = atoi(argv[++i]);
+        } else if(strcmp("-rn", argv[i]) == 0) {
+            RATE_NUM = atof(argv[++i]);
+        } else if(strcmp("-rd", argv[i]) == 0) {
+            RATE_DEN = atof(argv[++i]);
+        } else if(strcmp("-ttl", argv[i]) == 0) {
+            TTL = atoi(argv[++i]);
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+int main(int argc, char* argv[])
+{
+    bool success = getSettings(argc, argv);
+    if(!success) {
+        std::clog << "Incorrect arguments\n"
+                    <<"\t-np <UINT>: number of particles (default: 10000)\n"
+                    <<"\t-nt <UINT>: number of computing threads (default 1) \n"
+                    <<"\t-rn <FLOAT>: spawning rate #particles (default 200)\n"
+                    <<"\t-rd <FLOAT>: spawning rate period in seconds(default 0.1)\n"
+                    <<"\t-ttl <UINT>: particle lifetime in seconds(default 600)\n";
+        return 0;
+    }
+
 
 // INIT MODEL--------------------------------------
     psim::Buffer buffer(MAX_PARTICLES);

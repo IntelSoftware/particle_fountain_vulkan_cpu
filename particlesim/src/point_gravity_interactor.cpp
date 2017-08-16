@@ -2,7 +2,7 @@
 
 namespace psim {
     namespace interactors {
-        PointGravityInteractor::PointGravityInteractor(vec::vec3Coord pos, float massKG, float gConst)
+        PointGravityInteractor::PointGravityInteractor(vec::vec3f pos, float massKG, float gConst)
             : AbstractGravityInteractor(gConst)
             , position(pos)
             , mass(massKG)

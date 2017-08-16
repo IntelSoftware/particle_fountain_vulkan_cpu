@@ -9,7 +9,7 @@ namespace psim{
         class BaseInteractor
         {
         public:
-            using result = std::pair<vec::vec3Accel, bool>;
+            using result = std::pair<vec::vec3f, bool>;
             virtual ~BaseInteractor() = default;
 
             virtual result computeAcceleration(const particle & p) = 0; 

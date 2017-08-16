@@ -2,7 +2,7 @@
 
 namespace psim {
     namespace interactors {
-        ConstForceInteractor::ConstForceInteractor(vec::vec3Coord direction, base::force magnitude)
+        ConstForceInteractor::ConstForceInteractor(vec::vec3f direction, float magnitude)
             : force(direction * magnitude)
         {}
 

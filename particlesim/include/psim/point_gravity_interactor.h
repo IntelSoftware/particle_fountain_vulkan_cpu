@@ -8,7 +8,7 @@ namespace psim {
         class PointGravityInteractor : public AbstractGravityInteractor
         {
         public:
-            PointGravityInteractor(vec::vec3Coord pos, float massKG, float gConst = G);
+            PointGravityInteractor(vec::vec3f pos, float massKG, float gConst = G);
             virtual ~PointGravityInteractor() = default;
             PointGravityInteractor(const PointGravityInteractor& o);
             PointGravityInteractor& operator=(const PointGravityInteractor& o);
@@ -17,7 +17,7 @@ namespace psim {
             virtual BaseInteractor* clone() const override;
 
         protected:
-            vec::vec3Coord position;
+            vec::vec3f position;
             float mass;
             float gravityCoeff;
         };

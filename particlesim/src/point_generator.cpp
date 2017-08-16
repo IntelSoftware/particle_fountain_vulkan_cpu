@@ -15,7 +15,7 @@ namespace psim {
             return std::make_pair(phi, deviation);
         }
 
-        PointGenerator::PointGenerator(vec::vec3Coord pos, floatpair theta, floatpair phi, ttlpair ttl, floatpair mass, floatpair speed, floatpair rate)
+        PointGenerator::PointGenerator(vec::vec3f pos, floatpair theta, floatpair phi, ttlpair ttl, floatpair mass, floatpair speed, floatpair rate)
             : BaseGenerator(ttl, mass, speed, rate)
             , accumulatedParticleCount(0)
         {
@@ -73,7 +73,7 @@ namespace psim {
                         float phi = genPhi();
                         float theta = genTheta();
                         float speed = genSpeed();
-                        vec::vec3Coord velocity = speed * utils::fromSpherical(theta, phi);
+                        vec::vec3f velocity = speed * utils::fromSpherical(theta, phi);
 
                         particle p{
                             pointGenProperties.position,

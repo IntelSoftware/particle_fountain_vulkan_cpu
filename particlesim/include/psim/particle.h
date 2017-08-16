@@ -7,10 +7,10 @@
 namespace psim {
     struct particle
     {
-        vec::vec3Coord pos;
+        vec::vec3f pos;
         base::colorRGB color;
         base::time ttl;
-        vec::vec3Coord velocity;
+        vec::vec3f velocity;
         float massKG;
 
         static std::size_t size();
@@ -19,9 +19,9 @@ namespace psim {
         static std::size_t coordOffset();
         static std::size_t colorOffset();
 
-        base::coord distanceTo(const vec::vec3Coord &p) const noexcept;
-        base::coord distanceToSq(const vec::vec3Coord &p) const noexcept;
-        vec::vec3Coord directionTo(const vec::vec3Coord &p) const noexcept;
+        float distanceTo(const vec::vec3f &p) const noexcept;
+        float distanceToSq(const vec::vec3f &p) const noexcept;
+        vec::vec3f directionTo(const vec::vec3f &p) const noexcept;
     };
 }
 

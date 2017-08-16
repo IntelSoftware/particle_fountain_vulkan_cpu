@@ -2,7 +2,7 @@
 
 namespace psim {
     namespace interactors {
-        PlanarGravityInteractor::PlanarGravityInteractor(vec::vec3Coord position, vec::vec3Coord normal, float massKG, float gConst, bool deactivateOnContact)
+        PlanarGravityInteractor::PlanarGravityInteractor(vec::vec3f position, vec::vec3f normal, float massKG, float gConst, bool deactivateOnContact)
             : AbstractGravityInteractor(gConst)
             , pos(position)
             , n(normal)
@@ -55,7 +55,7 @@ namespace psim {
                 r = n * -1;
             } else {
                 if (deactivate == true) {
-                    return std::make_pair(vec::vec3Force(), false);
+                    return std::make_pair(vec::vec3f(), false);
                 }
 
                 r = n;

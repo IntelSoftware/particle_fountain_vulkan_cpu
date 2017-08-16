@@ -94,7 +94,7 @@ namespace psim {
         p.ttl -= dt;
         if (p.ttl > 0) {
             toWorldScale(p);
-            vec::vec3Accel a{ 0, 0, 0 };
+            vec::vec3f a{ 0, 0, 0 };
 
             bool keepAlive = true;
 

@@ -8,7 +8,7 @@ namespace psim {
 
     std::size_t particle::modelSize()
     {
-        return sizeof(vec::vec3Coord) + sizeof(base::colorRGB);
+        return sizeof(vec::vec3f) + sizeof(base::colorRGB);
     }
 
     std::size_t particle::coordOffset()
@@ -23,6 +23,6 @@ namespace psim {
 
     std::size_t particle::visualSize()
     {
-        return sizeof(vec::vec3Coord) + sizeof(base::colorRGB) + sizeof(float);
+        return sizeof(vec::vec3f) + sizeof(base::colorRGB) + sizeof(float);
     }
 }

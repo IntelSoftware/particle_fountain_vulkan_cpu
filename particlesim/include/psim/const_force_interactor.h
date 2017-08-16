@@ -8,12 +8,12 @@ namespace psim {
         class ConstForceInteractor : public BaseInteractor
         {
         public:
-            ConstForceInteractor(vec::vec3Coord direction, base::force magnitude);
+            ConstForceInteractor(vec::vec3f direction, float magnitude);
 				
             virtual result computeAcceleration(const particle & p) override;
             virtual BaseInteractor* clone() const override;
         private:
-            vec::vec3Force force;
+            vec::vec3f force;
         };
     }
 }
