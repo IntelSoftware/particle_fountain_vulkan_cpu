@@ -8,6 +8,8 @@ namespace renderer {
     class Device
     {
     public:
+		static constexpr uint32_t INTEL_VENDOR_ID = 0x8086;
+
         struct DeviceTypeReq {
             bool deviceTypeReq;
             VkPhysicalDeviceType deviceType;
@@ -18,6 +20,7 @@ namespace renderer {
         };
 
         Device(AppInstance& inst, VkSurfaceKHR surface); //select any first able to initialize
+		Device(AppInstance& inst, VkSurfaceKHR surface, uint32_t vendorID); //prioritize by vendorID
         Device(AppInstance& inst, VkSurfaceKHR surface, const DeviceTypeReq& typeReq); //select any first able to initialize
         Device(AppInstance& inst, VkSurfaceKHR surface, VkPhysicalDevice device); // select gien
         ~Device();

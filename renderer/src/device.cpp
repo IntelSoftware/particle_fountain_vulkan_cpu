@@ -16,6 +16,28 @@ namespace renderer {
         throw std::runtime_error("Could not find suitable physical device");
     }
 
+	Device::Device(AppInstance & inst, VkSurfaceKHR surface, uint32_t vendorID)
+		: appInstance(inst)
+		, wndSurface(surface)
+	{
+		auto devList = appInstance.physicalDevices();
+		for (auto dev : devList) {
+			auto devProps = appInstance.deviceProperties(dev);
+			if ((devProps.vendorID == vendorID) && (createDevice(dev, wndSurface) == VK_SUCCESS)) {
+				return;
+			}
+		}
+		for (auto dev : devList) {
+			auto devProps = appInstance.deviceProperties(dev);
+			if ((devProps.vendorID != vendorID) && (createDevice(dev, wndSurface) == VK_SUCCESS)) {
+				return;
+			}
+		}
+
+		throw std::runtime_error("Could not find suitable physical device");
+	}
+
+
     Device::Device(AppInstance & inst, VkSurfaceKHR surface, const DeviceTypeReq & typeReq)
         : appInstance(inst)
         , wndSurface(surface)
@@ -363,6 +385,9 @@ namespace renderer {
                                                 1 };
 
         vkCreateImageView(virtualDevice, &depthBufferImageViewCi, nullptr, &depthBufferImageView);
+
+		std::clog << "SELECTED PHYSICAL DEVICE:\n";
+		appInstance.printPhysicalDevice(device);
 
         return VK_SUCCESS;
     }

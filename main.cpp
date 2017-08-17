@@ -181,7 +181,8 @@ int main(int argc, char* argv[])
     try {
         renderer::AppInstance appInstance;
         renderer::SurfaceWindows appSurface(appInstance, GetModuleHandle(nullptr), glfwGetWin32Window(wnd));
-        renderer::Device appDevice(appInstance, appSurface.surface());
+        
+		renderer::Device appDevice(appInstance, appSurface.surface(), renderer::Device::INTEL_VENDOR_ID);
         renderer::Scene scene(appDevice);
         renderer::ParticlesElement partElem(appDevice, scene.renderPass(), buffer.dataSizeTotal());
         scene.addToScene(&partElem);
