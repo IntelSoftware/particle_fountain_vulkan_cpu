@@ -16,6 +16,7 @@ namespace psim {
         delete[] bufferData;
     }
 
+	//CPU_TP32
     void Buffer::sort()
     {
         if (totalSize >= 2) {

@@ -74,16 +74,21 @@ namespace psim {
         interactors.clear();
     }
 
+	//CPU_TP26
     void Model::progress(std::chrono::microseconds dt, Buffer & buffer)
     {
         base::time dt_sec = dt.count() *1.0e-6f;
 
-        #pragma omp parallel for schedule(static, 10)
+		//CPU_TP27, CPU_TP40
+        #pragma omp parallel for schedule(static)
         for (int32_t i = 0; i < buffer.activeCount(); ++i) {
             buffer[i] = processParticle(dt_sec, buffer[i]);
         }
 
+		//CPU_TP28
         buffer.sort();
+
+		//CPU_TP29
         for (generators::BaseGenerator* g : generators) {
             g->generate(buffer, dt_sec);
         }

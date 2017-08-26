@@ -4,6 +4,7 @@
 #include <renderer/appinstance.h>
 #include <forward_list>
 
+//CPU_TP4
 namespace renderer {
     class Device
     {
@@ -19,10 +20,11 @@ namespace renderer {
             uint32_t deviceID;
         };
 
+		//CPU_TP5
         Device(AppInstance& inst, VkSurfaceKHR surface); //select any first able to initialize
 		Device(AppInstance& inst, VkSurfaceKHR surface, uint32_t vendorID); //prioritize by vendorID
         Device(AppInstance& inst, VkSurfaceKHR surface, const DeviceTypeReq& typeReq); //select any first able to initialize
-        Device(AppInstance& inst, VkSurfaceKHR surface, VkPhysicalDevice device); // select gien
+        Device(AppInstance& inst, VkSurfaceKHR surface, VkPhysicalDevice device); // select given
         ~Device();
 
         VkDevice& device() noexcept;

@@ -40,6 +40,7 @@ namespace {
 
 psim::Model::GeneratorList initGeneratorsList() 
 {
+	//CPU_TP38
     psim::Model::GeneratorList genList;
     psim::generators::PointGenerator* g = new psim::generators::PointGenerator(
         { 0.0f, 250.0f, 0.0f },
@@ -146,6 +147,7 @@ int main(int argc, char* argv[])
 // INIT MODEL--------------------------------------
     psim::Buffer buffer(MAX_PARTICLES);
 
+	//CPU_TP34
     auto genList = initGeneratorsList();
     auto iList = initInteractorList();
     auto mvp = initMVP();
@@ -196,12 +198,16 @@ int main(int argc, char* argv[])
         std::chrono::microseconds dt;
 
         while (!glfwWindowShouldClose(wnd)) {
+			//CPU_TP23
             now = std::chrono::system_clock::now();
             dt = std::chrono::duration_cast<std::chrono::microseconds>(now - prev);
             prev = now;
 
+			//CPU_TP24
             world.progress(dt, buffer);
-            partElem.setVertexBufferData(buffer.activeCount(), buffer.data(), buffer.dataSizeTotal());
+            
+			//CPU_TP11, CPU_TP25
+			partElem.setVertexBufferData(buffer.activeCount(), buffer.data(), buffer.dataSizeTotal());
             scene.render();
 
             ++framecount;

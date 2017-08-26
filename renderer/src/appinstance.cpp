@@ -27,6 +27,7 @@ namespace renderer {
         instInfo.enabledExtensionCount = instExtCount;
         instInfo.ppEnabledExtensionNames = instExtList;
 #ifdef DEBUG
+		//CPU_TP2
         const char* const layerList[] = { "VK_LAYER_LUNARG_standard_validation" };
 
         instInfo.enabledLayerCount = 1;

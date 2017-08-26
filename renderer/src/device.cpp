@@ -6,6 +6,7 @@ namespace renderer {
         : appInstance(inst)
         , wndSurface(surface)
     {
+		//CPU_TP6
         auto devList = appInstance.physicalDevices();
         for (auto dev : devList) {
             if (createDevice(dev, wndSurface) == VK_SUCCESS) {
@@ -158,10 +159,11 @@ namespace renderer {
 
     VkResult Device::createDevice(VkPhysicalDevice device, VkSurfaceKHR surface)
     {
-        //TODO: V0.1 improve later
+        //CPU_TP7
         physDevice = device;
         VkResult result;
 
+		//CPU_TP8
         auto queueProps = appInstance.deviceQueueProperties(device);
         uint32_t queueIdx;
         bool queueFound = false;
@@ -352,7 +354,7 @@ namespace renderer {
             }
         }
 
-        if (!memTypeIndex) {
+        if (!memTypeFound) {
             return VK_ERROR_INITIALIZATION_FAILED;
         }
 

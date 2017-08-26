@@ -24,6 +24,7 @@ namespace renderer {
         VkRenderPass renderPass() noexcept;
 
     private:
+		//CPU_TP10
         std::vector<SceneElement*> objectsList;
 
         Device& rDevice;

@@ -6,10 +6,11 @@
 
 /*
 NOTE: Sort the buffer before adding any new elements
-NOTE: For performance reasons access to the buffer is not boundary check to restrict operation only to active elements. This has to be maintained manually.
-NOTE: The preferred order of operations is: 1)Compute on active particles, 2) sort, 3) Optionally add id space available
+NOTE: For performance reasons access to the buffer is not boundary checked.
+NOTE: The preferred order of operations is: 1)Compute on active particles, 2) sort, 3) Optionally add particles if space available
 */
 
+//CPU_TP30
 namespace psim {
     class Buffer final
     {

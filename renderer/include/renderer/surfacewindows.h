@@ -5,6 +5,7 @@
 #include <renderer/appinstance.h>
 #include <stdexcept>
 
+//CPU_TP3
 namespace renderer {
     class SurfaceWindows final
     {

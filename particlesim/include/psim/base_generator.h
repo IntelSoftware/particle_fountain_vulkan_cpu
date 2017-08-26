@@ -7,6 +7,7 @@
 #include <psim/types.h>
 #include <psim/buffer.h>
 
+//CPU_TP33
 namespace psim {
     namespace generators {
         class BaseGenerator {
@@ -43,6 +44,7 @@ namespace psim {
 
                 floatpair defSpeed;
                 bool variableSpeed;
+				//CPU_TP36
                 std::uniform_real_distribution<float> distSpeed;
 
                 floatpair defParticleSpawnRate;

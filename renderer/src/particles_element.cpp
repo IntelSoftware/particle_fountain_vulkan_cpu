@@ -4,6 +4,7 @@
 
 #include <psim/particle.h>
 
+//CPU_TP15
 namespace renderer {
     ParticlesElement::ParticlesElement(Device & device, VkRenderPass renderPass, std::size_t vbSize)
         :SceneElement(device)
@@ -11,6 +12,7 @@ namespace renderer {
         , particleCount(0)
     {
         VkResult result;
+		//CPU_TP19
         VkBufferCreateInfo mvpUniformCi;
         mvpUniformCi.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
         mvpUniformCi.pNext = nullptr;
@@ -26,9 +28,11 @@ namespace renderer {
         VkPhysicalDeviceMemoryProperties memProperties;
         vkGetPhysicalDeviceMemoryProperties(renderDevice.physicalDevice(), &memProperties);
 
+		//CPU_TP20
         VkMemoryRequirements mvpUniformMemoryRequirements;
         vkGetBufferMemoryRequirements(renderDevice.device(), mvpUniform, &mvpUniformMemoryRequirements);
 
+		//CPU_TP21
         uint32_t memTypeIndex;
         bool memoryTypeFound = false;
         auto memTags = (VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT);
@@ -44,6 +48,7 @@ namespace renderer {
             throw std::runtime_error("Could not find proper memory type for uniform buffer");
         }
 
+		//CPU_TP22
         VkMemoryAllocateInfo mvpUniformAlloc;
         mvpUniformAlloc.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
         mvpUniformAlloc.pNext = nullptr;
@@ -385,6 +390,7 @@ namespace renderer {
         vkFreeMemory(renderDevice.device(), mvpUniformDeviceMemory, nullptr);
     }
 
+	//CPU_TP17
     void ParticlesElement::setMVP(const glm::mat4 & mvp)
     {
         void *mappedData;
@@ -394,6 +400,7 @@ namespace renderer {
         vkUnmapMemory(renderDevice.device(), mvpUniformDeviceMemory);
     }
 
+	//CPU_TP18
     void ParticlesElement::setVertexBufferData(std::size_t count, void * data, std::size_t memSize)
     {
         particleCount = count;
@@ -404,6 +411,7 @@ namespace renderer {
         vkUnmapMemory(renderDevice.device(), vertexBufferMemory);
     }
 
+	//CPU_TP16
     void ParticlesElement::recordToCmdBuffer(VkCommandBuffer commandBuffer)
     {
         vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);

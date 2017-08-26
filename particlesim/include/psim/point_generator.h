@@ -3,6 +3,7 @@
 
 #include <psim/base_generator.h>
 
+//CPU_TP37
 namespace psim {
     namespace generators {
         class PointGenerator : public BaseGenerator

@@ -161,9 +161,11 @@ namespace renderer {
         uint32_t currentImageIndex;
         result = vkAcquireNextImageKHR(rDevice.device(), rDevice.swapchain(), UINT64_MAX, swapchainImageSemaphore, VK_NULL_HANDLE, &currentImageIndex);
 
+		//CPU_TP12
         renderPassBegin.framebuffer = framebuffers[currentImageIndex];
         vkCmdBeginRenderPass(commandBuffer, &renderPassBegin, VK_SUBPASS_CONTENTS_INLINE);
 
+		//CPU_TP13
         for (auto element : objectsList) {
             element->recordToCmdBuffer(commandBuffer);
         }
