@@ -185,6 +185,7 @@ namespace renderer {
         present.pWaitSemaphores = nullptr;
         present.pResults = nullptr;
 
+		//CPU_TP61
         VkResult waitResult;
         do {
             waitResult = vkWaitForFences(rDevice.device(), 1, &fence, VK_TRUE, UINT64_MAX);
